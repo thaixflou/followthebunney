@@ -1,0 +1,16 @@
+/node_modules
+/.next/
+/out/
+/coverage
+.DS_Store
+*.pem
+npm-debug.log*
+.env*
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# private layer (Attio, review, email) never goes in the public repo
+/private/
+/data/
+/logs/

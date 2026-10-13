@@ -1,0 +1,21 @@
+:root {
+  --bg: #fffaf5;
+  --fg: #1f1a17;
+  --muted: #6b625c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+.shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
