@@ -1,6 +1,7 @@
 // Run: node --experimental-strip-types scripts/test-engine.ts
 import assert from "node:assert/strict";
 import { PATHS } from "../lib/paths.ts";
+import { toCsv } from "../lib/csv.ts";
 import { allAnswered, horizons, scoreAnswers, type Answers } from "../lib/engine.ts";
 
 for (const path of PATHS) {
@@ -30,3 +31,9 @@ for (const path of PATHS) {
   assert.equal(h.quarter.length, 2);
   console.log(`${path.id}: ok`);
 }
+
+const csv = toCsv(["a", "b;c"], [['x"y', "line\nbreak"]]);
+assert(csv.startsWith("\uFEFF"));
+assert(csv.includes('"b;c"') && csv.includes('"x""y"') && csv.includes('"line\nbreak"'));
+for (const path of PATHS) assert(path.template.examples.every((r) => r.length === path.template.columns.length), "example rows must match columns");
+console.log("csv: ok");

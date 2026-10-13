@@ -170,6 +170,27 @@ export const airbnbBr: AuditPath = {
     },
   ],
 
+  template: {
+    filename: "mapa-predios-apartamentos.csv",
+    title: "Sua planilha de prédios e apartamentos",
+    text: "Uma linha por apartamento, com o que cada prédio exige receber. É o passo de “Hoje” da área de mapa, já em formato de planilha. Abre no Excel e no Google Planilhas. As linhas de exemplo são inventadas: apague-as.",
+    button: "Baixar a planilha (CSV)",
+    columns: [
+      "Apartamento (número)",
+      "Prédio",
+      "Nome exato do anúncio",
+      "Canal da portaria (grupo, gerente, e-mail, impressão)",
+      "Nome do grupo ou contato",
+      "O que o prédio exige receber",
+      "Quando enviar",
+      "Observações",
+    ],
+    examples: [
+      ["EXEMPLO 101", "Prédio Exemplo A", "Apto 101 Exemplo", "Grupo de WhatsApp", "Portaria Exemplo A", "Foto do documento + datas", "Na véspera do check-in", "Apague esta linha"],
+      ["EXEMPLO 202", "Prédio Exemplo B", "Apto 202 Exemplo", "E-mail", "administradora@exemplo.com", "Nomes por escrito + datas", "Na véspera do check-in", "Apague esta linha"],
+    ],
+  },
+
   questions: [
     {
       id: "tempo_resposta",

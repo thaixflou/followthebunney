@@ -3,7 +3,18 @@
 import { useMemo, useState } from "react";
 import { PATHS, PROFILES } from "@/lib/paths";
 import { allAnswered, band, dontKnow, horizons, scoreAnswers, type Answers } from "@/lib/engine";
+import { toCsv } from "@/lib/csv";
 import type { AuditPath } from "@/lib/types";
+
+function downloadCsv(path: AuditPath) {
+  const { filename, columns, examples } = path.template;
+  const url = URL.createObjectURL(new Blob([toCsv(columns, examples)], { type: "text/csv;charset=utf-8" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://revenuebythais.com";
 
@@ -130,6 +141,12 @@ function PathAudit({ path, onExit }: { path: AuditPath; onExit: () => void }) {
               ))}
             </>
           )}
+
+          <div className="template">
+            <h2>{path.template.title}</h2>
+            <p>{path.template.text}</p>
+            <button className="btn" onClick={() => downloadCsv(path)}>{path.template.button}</button>
+          </div>
 
           <div className="cta">
             <h2>{t.ctaTitle}</h2>

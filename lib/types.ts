@@ -56,10 +56,20 @@ export type PathText = {
   dontKnow: string;
 };
 
+export type Template = {
+  filename: string;
+  title: string;
+  text: string;
+  button: string;
+  columns: string[];
+  examples: string[][]; // clearly fictional rows, marked so the person deletes them
+};
+
 export type AuditPath = {
   id: string;
   text: PathText;
   context: ContextQuestion[];
   areas: Area[];
   questions: Question[];
+  template: Template;
 };
