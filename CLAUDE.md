@@ -14,11 +14,17 @@ Open source, static Next.js 16 + TypeScript app. A person picks their profile, a
 - Questions, scoring and advice are Thais's content. Everything new is DRAFT until she approves it. Never put real client data in examples (the Airbnb case is anonymised: pattern only).
 - Four paths: US property management (imobiliária), Airbnb manager in Brazil, software and high-end services, founder-led marketing agencies. Only the Airbnb path is in Portuguese for now; the rest are English.
 - Do not create the GitHub repo, push, or publish without Thais's approval.
+- The Airbnb path is built and reviewed by Thais. Other paths follow the same data shape (`lib/types.ts`, `content/airbnb-br.ts`); the engine in `lib/engine.ts` holds no wording. Add a path to `lib/paths.ts` and flip `ready` in `PROFILES`.
+- Owner-only money wording: the `money` line of each area shows only to owners; operators see time lost and risk of error.
+- Ideas not yet approved for build live in `backlog.md` (WhatsApp chat-export import, software path).
 - Ask before deleting, overwriting, renaming or moving any file.
 
 ## Commands
-- Run: `npm.cmd run dev` (script execution is disabled in PowerShell). Check: `npm run build`, `npm run lint`.
+- Run: `npm.cmd run dev` (script execution is disabled in PowerShell); Thais's other dev server may use 3000, so use `npx next dev -p 3002`. Check: `npm run build`, `npm run lint`, `node --experimental-strip-types scripts/test-engine.ts`.
 
 ## Mistakes to avoid
 - Python is not installed: write helper scripts in Node.
+- Never write code files with `node - <<EOF` when they contain `
+` or `﻿` escapes: the shell turns them into real characters and breaks the file. Use the Write tool.
+- Library imports use the `.ts` extension (`allowImportingTsExtensions`) so the test script runs under plain Node.
 - `create-next-app` refuses folder names with a space: write the files by hand, as done here.

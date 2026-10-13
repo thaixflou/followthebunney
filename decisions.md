@@ -17,3 +17,23 @@
 
 ## 2026-10-13: Language
 - Airbnb path in Portuguese; the other paths in English for now. Text lives in separate content files so more languages can be added.
+
+## 2026-10-13: Public repo `thaixflou/followthebunney`, MIT licence
+- Why: the audit is meant to be open source and usable online; Thais chose the name.
+- What we didn't pick: a private repo or a repo inside `hello-workspace` (mixes with unrelated projects, not shareable).
+
+## 2026-10-13: Money wording only for owners
+- Why: for the Airbnb manager the pain is lost time and risk of error; only business owners also get the line about lost money. No numbers, only hedged statements.
+- What we didn't pick: one money-focused text for everyone.
+
+## 2026-10-13: Downloadable CSV is the "Today" step of the mapping area
+- Why: gives the person something to use at once. Semicolon separator and UTF-8 BOM so it opens correctly in Brazilian Excel and Google Sheets; example rows are invented and marked to delete.
+- What we didn't pick: a comma-separated file (opens as one column in Brazilian Excel).
+
+## 2026-10-13: WhatsApp plug-in goes to the backlog as chat-export import
+- Why: WhatsApp has no official API for a personal account's groups; workarounds can get the number blocked; a live link needs a server and breaks "nothing is stored"; third-party data under LGPD. Importing exported chats in the browser avoids all of that. Medium term, see `backlog.md`.
+- What we didn't pick: live connection (unofficial, risky, would only fit the private layer with `secretario`).
+
+## 2026-10-13: Software path postponed; paths built in this order
+- Order: Airbnb BR (done), software and high-end services, founder-led agency, US property management last. Software questions are drafted in `backlog.md`.
+- Why: Thais did not want to finalise it today; the US path lacks a mapped pain case.

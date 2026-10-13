@@ -1,19 +1,19 @@
 # Handoff
 
 ## Where we are
-Public repo: https://github.com/thaixflou/followthebunney (MIT). The Airbnb BR path (Portuguese) is built end to end: engine in `lib/engine.ts`, content in `content/airbnb-br.ts` (10 questions, 6 areas, 3 horizons, all DRAFT), UI in `app/Audit.tsx`. Build, lint and `node --experimental-strip-types scripts/test-engine.ts` pass. Not yet clicked through in a browser. The other three paths show "coming soon".
+Public repo https://github.com/thaixflou/followthebunney (MIT). The Airbnb BR path (Portuguese) is built end to end and Thais has reviewed and approved the wording: 4 context questions, 10 questions in 6 areas, 3 horizons, owner-only money lines, and a CSV download (buildings and apartments map). Build, lint and the engine test pass. The software, agency and US property-management profiles show "coming soon".
 
 ## Last session did
-- 2026-10-13: skeleton, GitHub repo, question list approved, Airbnb BR path built.
+- 2026-10-13: created the project and public repo, built the Airbnb BR path and the CSV download, added `backlog.md` (WhatsApp chat-export import, software path drafted). See `sessions/2026-10-13.md`.
 
 ## Next session does
-1. Thais clicks through the Airbnb path (`npm.cmd run dev`) and edits the DRAFT wording in `content/airbnb-br.ts`.
-2. Add the optional calculator (value of one point of improvement, her own numbers) if she wants it.
-3. Backlog (medium term, not now): WhatsApp chat-export import to fill the spreadsheet, see `backlog.md`.
-4. Software and high-end services path: questions already drafted in `backlog.md`; get Thais's answers on the two open points, then build. After that the agency path, then property management US last.
+1. Ask which path is next. Recommended: software and high-end services. Its questions are drafted in `backlog.md`; first get Thais's answers on missing/surplus pains and on the download (scored account list vs one-page ICP template), then build it in `content/` with the same shape as `airbnb-br.ts`.
+2. Then the founder-led agency path (brief: owner of the lead, follow-up, conversion rate, pipeline visibility).
+3. Optional, if Thais wants it: calculator of the value of one point of improvement, using her own numbers.
+4. Last: US property management, once Thais gives the pain points from the C21 case.
 
 ## Waiting on
-- Thais: the C21 / property-management pain points. `../c21/` is an outbound referral campaign (realtors refer landlords; Follow Up Boss), not a mapped pain case, so the US path needs her input before questions are written.
-- Thais: approval of all DRAFT wording; the C21 pain points (US path is last, by her choice).
+- Thais: answers for the software path (above) and the C21 pain points.
+- Not decided: LinkedIn post and booking link (`NEXT_PUBLIC_BOOKING_URL`; the CTA points to revenuebythais.com for now). Thais is handling the LinkedIn side.
 
 *Last updated: 2026-10-13*
