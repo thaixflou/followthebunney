@@ -65,6 +65,31 @@ export type Template = {
   examples: string[][]; // clearly fictional rows, marked so the person deletes them
 };
 
+// A text document the person downloads (markdown). Optional: only some paths have one.
+export type Kit = {
+  filename: string;
+  title: string;
+  text: string;
+  button: string;
+  body: string;
+};
+
+// Plain arithmetic on the person's own numbers. Stages run in order; the last one is "won".
+export type Calculator = {
+  title: string;
+  text: string;
+  periodNote: string; // which period the counts cover
+  stages: { id: string; label: string }[];
+  ticketLabel: string;
+  orderError: string; // shown when a later stage is larger than the one before it
+  ratesTitle: string;
+  rate: (from: string, to: string, pct: number) => string;
+  weakest: (from: string, to: string, pct: number) => string;
+  onePoint: (from: string, to: string, extraWins: number, value: number) => string;
+  oneProject: (value: number) => string;
+  assumption: string;
+};
+
 export type AuditPath = {
   id: string;
   text: PathText;
@@ -72,4 +97,6 @@ export type AuditPath = {
   areas: Area[];
   questions: Question[];
   template: Template;
+  kit?: Kit;
+  calculator?: Calculator;
 };

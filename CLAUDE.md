@@ -16,13 +16,17 @@ Open source, static Next.js 16 + TypeScript app. A person picks their profile, a
 - The repo is public (`thaixflou/followthebunney`): nothing sensitive goes in any file, including `handoff.md` and `backlog.md`. Do not publish the site or post anywhere without Thais's approval.
 - The Airbnb path is built and reviewed by Thais. Other paths follow the same data shape (`lib/types.ts`, `content/airbnb-br.ts`); the engine in `lib/engine.ts` holds no wording. Add a path to `lib/paths.ts` and flip `ready` in `PROFILES`.
 - Owner-only money wording: the `money` line of each area shows only to owners; operators see time lost and risk of error.
-- Ideas not yet approved for build live in `backlog.md` (WhatsApp chat-export import, software path).
+- The agency path (`content/agency.ts`, English) is a DRAFT built from a real, anonymised engagement. It adds two optional parts to `AuditPath` in `lib/types.ts`: a live `calculator` (arithmetic in `lib/funnel.ts`, tested) and a downloadable markdown `kit` (`content/agency-kit.ts`). Its download template is a 90-day plan CSV of testable hypotheses (expected result, check date, stop criterion). Other paths can reuse both.
+- Ideas not yet approved for build live in `backlog.md` (WhatsApp chat-export import, software path, design pass).
+- Real client documents (proposals, data) never go in this folder or any repo folder. They live in `C:\Users\Thais\.secrets\clients\`. Never name a real client, person or price in any file here.
 - Ask before deleting, overwriting, renaming or moving any file.
 
 ## Commands
 - Run: `npm.cmd run dev` (script execution is disabled in PowerShell); Thais's other dev server may use 3000, so use `npx next dev -p 3002`. Check: `npm run build`, `npm run lint`, `node --experimental-strip-types scripts/test-engine.ts`.
 
 ## Mistakes to avoid
+- A real client proposal was left inside a repo folder (this one is public). Rule: read client files from `.secrets\clients\`, and if one turns up in a repo folder, ask where to move it before anything else.
+- `react-hooks/use-memo` lint rejects `useMemo` dependency lists with expressions like `arr.join()`. For cheap maths, skip the memo.
 - Python is not installed: write helper scripts in Node.
 - Never write code files through a shell heredoc or `node -` script when the text contains backslash escapes (newline, BOM): they become real characters and break the file. Use the Write tool.
 - Library imports use the `.ts` extension (`allowImportingTsExtensions`) so the test script runs under plain Node.

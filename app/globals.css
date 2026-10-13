@@ -62,3 +62,8 @@ h2 { font-size: 1.2rem; margin: 1.75rem 0 .25rem; }
 .cta h2 { margin-top: 0; }
 .template { margin: 2rem 0 1rem; padding: 1.25rem; border: 1px dashed var(--accent); border-radius: 10px; }
 .template h2 { margin-top: 0; }
+.field { display: grid; gap: .25rem; margin: .75rem 0; font-weight: 600; }
+.field input { font: inherit; padding: .5rem .6rem; border: 1px solid var(--line); border-radius: 8px; max-width: 14rem; }
+.calc-result { position: sticky; bottom: 0; margin-top: 1rem; padding: .5rem 1rem; background: var(--card); border: 1px solid var(--accent); border-radius: 10px; }
+.big-line { font-weight: 700; color: var(--accent); }
+.calc-result h3 { font-size: 1rem; margin: .5rem 0; }

@@ -37,3 +37,22 @@
 ## 2026-10-13: Software path postponed; paths built in this order
 - Order: Airbnb BR (done), software and high-end services, founder-led agency, US property management last. Software questions are drafted in `backlog.md`.
 - Why: Thais did not want to finalise it today; the US path lacks a mapped pain case.
+
+## 2026-10-13: Software path skipped for now; agency path built next
+- Why: Thais chose to skip software for now; she has a real first engagement that maps onto the agency path.
+- What we didn't pick: software path (questions stay drafted in `backlog.md`); US property management (still lacks pain points).
+
+## 2026-10-13: Agency free offer is a calculator, a kit and a 90-day hypothesis plan
+- Why: founder-led agency owners are more sophisticated than Airbnb managers, so the free part must be worth more. The kit mirrors what the real engagement delivered (qualification with decision access, first conversation, follow-up cadence); the plan template uses testable hypotheses with stop criteria.
+- What we didn't pick: a plain lead tracker CSV (too thin); a scored account list or ICP template (that was for the software path).
+
+## 2026-10-13: Funnel calculator is live and plain arithmetic
+- Why: Thais wants the number to update while the person fills it in. Only the person's own counts and project value are used, no benchmarks; assumptions are stated on screen (every project worth the average, later steps keep their rate).
+- What we didn't pick: a Calculate button; any comparison with other companies.
+
+## 2026-10-13: Real client documents stay out of every repo folder
+- Why: this repo is public and the top-level folder syncs to OneDrive and GitHub. Client files live in `C:\Users\Thais\.secrets\clients\`.
+- What we didn't pick: keeping the file in the project with a git exclude (one slip publishes it).
+
+## 2026-10-13: Design pass postponed
+- Why: Thais wants to work on design later; current styling is a placeholder.

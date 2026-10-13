@@ -1,5 +1,8 @@
 # Backlog
 
+## Design pass (later)
+The look of the app, including the agency calculator's pinned result box, is a placeholder. Thais will direct a proper design pass later.
+
 ## Medium term: fill the spreadsheet from WhatsApp groups
 Idea: the person plugs in WhatsApp, we identify the group names and fill the buildings spreadsheet for them.
 
@@ -14,8 +17,8 @@ Why not a live connection: WhatsApp has no official API to list a personal accou
 
 To start: a real or realistic exported `.txt` of a building group, and a decision on iPhone and Android date formats (they differ).
 
-## Next path: software and high-end services (drafted, not built)
-Not finalised on 2026-10-13. Same data shape as `content/airbnb-br.ts`, in English. Waiting on Thais's answers (below) before building.
+## Skipped for now: software and high-end services (drafted, not built)
+Thais chose to skip this path on 2026-10-13 (second session) and build the agency path first. Not finalised. Same data shape as `content/airbnb-br.ts`, in English. Waiting on Thais's answers (below) before building.
 
 **Context (not scored):** role (owner/founder/leader or operator; switches on the money wording), what they sell (software, high-end services, both), who does outbound today (founder, SDRs, agency, nobody), size of the sales team.
 
@@ -31,4 +34,4 @@ Not finalised on 2026-10-13. Same data shape as `content/airbnb-br.ts`, in Engli
 
 **Open for Thais:** any pain missing or surplus (the "competing against AI" angle is only in the advice, not the questions); scored account list vs one-page ICP template as the download.
 
-Then: founder-led agency path, and US property management last (needs Thais's pain points from the C21 case).
+US property management comes last (needs Thais's pain points from the C21 case). The founder-led agency path is built as a draft (see `handoff.md`).

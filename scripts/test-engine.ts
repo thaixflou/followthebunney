@@ -2,6 +2,7 @@
 import assert from "node:assert/strict";
 import { PATHS } from "../lib/paths.ts";
 import { toCsv } from "../lib/csv.ts";
+import { funnel } from "../lib/funnel.ts";
 import { allAnswered, horizons, scoreAnswers, type Answers } from "../lib/engine.ts";
 
 for (const path of PATHS) {
@@ -37,3 +38,23 @@ assert(csv.startsWith("\uFEFF"));
 assert(csv.includes('"b;c"') && csv.includes('"x""y"') && csv.includes('"line\nbreak"'));
 for (const path of PATHS) assert(path.template.examples.every((r) => r.length === path.template.columns.length), "example rows must match columns");
 console.log("csv: ok");
+
+// Funnel: leads 100 -> conversations 20 -> proposals 10 -> won 5, project worth 1000.
+const f = funnel([100, 20, 10, 5], 1000);
+assert(f.ok);
+if (f.ok) {
+  assert.deepEqual(f.steps.map((s) => s.rate), [0.2, 0.5, 0.5]);
+  assert.equal(f.weakest.from, 0);
+  assert.equal(f.oneProjectPerYear, 4000);
+  // One point on the first step: 100 * 0.01 = 1 more conversation, each worth 5/20 = 0.25 wins.
+  assert.equal(f.weakest.extraWinsPerPoint, 0.25);
+  assert.equal(f.valuePerPoint(f.weakest), 0.25 * 1000 * 4);
+  // One point on the last step: 10 * 0.01 = 0.1 wins.
+  assert(Math.abs(f.steps[2].extraWinsPerPoint - 0.1) < 1e-9);
+}
+assert.deepEqual(funnel([10, 20], 100), { ok: false, error: "order" });
+assert.deepEqual(funnel([0, 0, 0], 100), { ok: false, error: "empty" });
+assert.deepEqual(funnel([10, -1], 100), { ok: false, error: "empty" });
+assert.equal(funnel([10, 0, 0], 100).ok, true, "zero wins is a valid funnel");
+for (const path of PATHS) if (path.calculator) assert(path.calculator.stages.length >= 2, `${path.id}: calculator needs two stages`);
+console.log("funnel: ok");

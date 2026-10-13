@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import { PATHS, PROFILES } from "@/lib/paths";
 import { allAnswered, band, dontKnow, horizons, scoreAnswers, type Answers } from "@/lib/engine";
 import { toCsv } from "@/lib/csv";
-import type { AuditPath } from "@/lib/types";
+import { funnel, PERIODS_PER_YEAR } from "@/lib/funnel";
+import type { AuditPath, Calculator as CalculatorText, Kit } from "@/lib/types";
 
 function downloadCsv(path: AuditPath) {
   const { filename, columns, examples } = path.template;
@@ -14,6 +15,74 @@ function downloadCsv(path: AuditPath) {
   link.download = filename;
   link.click();
   URL.revokeObjectURL(url);
+}
+
+function downloadKit(kit: Kit) {
+  const url = URL.createObjectURL(new Blob([kit.body], { type: "text/markdown;charset=utf-8" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = kit.filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+function FunnelCalculator({ calc }: { calc: CalculatorText }) {
+  const [counts, setCounts] = useState<Record<string, string>>({});
+  const [ticket, setTicket] = useState("");
+
+  // Live: the result updates on every keystroke. Stages are read in order up to the first empty one.
+  const has = (v: string | undefined) => v !== undefined && v !== "";
+  const prefix: number[] = [];
+  for (const s of calc.stages) {
+    if (!has(counts[s.id])) break;
+    prefix.push(Number(counts[s.id]));
+  }
+  const allStages = prefix.length === calc.stages.length;
+  const hasTicket = has(ticket);
+  const result = prefix.length >= 2 ? funnel(prefix, hasTicket ? Number(ticket) : 0) : null;
+  const label = (i: number) => calc.stages[i].label;
+
+  return (
+    <div className="template">
+      <h2>{calc.title}</h2>
+      <p>{calc.text}</p>
+      <p className="muted small">{calc.periodNote}</p>
+      {calc.stages.map((s) => (
+        <label key={s.id} className="field">
+          <span>{s.label}</span>
+          <input type="number" inputMode="numeric" min={0} value={counts[s.id] ?? ""} onChange={(e) => setCounts((c) => ({ ...c, [s.id]: e.target.value }))} />
+        </label>
+      ))}
+      <label className="field">
+        <span>{calc.ticketLabel}</span>
+        <input type="number" inputMode="decimal" min={0} value={ticket} onChange={(e) => setTicket(e.target.value)} />
+      </label>
+
+      {(result || hasTicket) && (
+        <div className="calc-result" aria-live="polite">
+          {result && !result.ok && <p className="money">{calc.orderError}</p>}
+          {result && result.ok && (
+            <>
+              <h3>{calc.ratesTitle}</h3>
+              {result.steps.map((s) => (
+                <p key={s.to}>{calc.rate(label(s.from), label(s.to), Math.round(s.rate * 100))}</p>
+              ))}
+              {allStages && (
+                <>
+                  <p>{calc.weakest(label(result.weakest.from), label(result.weakest.to), Math.round(result.weakest.rate * 100))}</p>
+                  {hasTicket && result.valuePerPoint(result.weakest) > 0 && (
+                    <p>{calc.onePoint(label(result.weakest.from), label(result.weakest.to), result.weakest.extraWinsPerPoint, result.valuePerPoint(result.weakest))}</p>
+                  )}
+                </>
+              )}
+            </>
+          )}
+          {hasTicket && <p className="big-line">{calc.oneProject(Number(ticket) * PERIODS_PER_YEAR)}</p>}
+          <p className="muted small">{calc.assumption}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://revenuebythais.com";
@@ -140,6 +209,16 @@ function PathAudit({ path, onExit }: { path: AuditPath; onExit: () => void }) {
                 <article key={a.id} className="advice"><strong>{a.name}</strong><p>{text}</p></article>
               ))}
             </>
+          )}
+
+          {path.calculator && <FunnelCalculator calc={path.calculator} />}
+
+          {path.kit && (
+            <div className="template">
+              <h2>{path.kit.title}</h2>
+              <p>{path.kit.text}</p>
+              <button className="btn" onClick={() => downloadKit(path.kit!)}>{path.kit.button}</button>
+            </div>
           )}
 
           <div className="template">
