@@ -17,7 +17,10 @@ Why not a live connection: WhatsApp has no official API to list a personal accou
 
 To start: a real or realistic exported `.txt` of a building group, and a decision on iPhone and Android date formats (they differ).
 
-## Skipped for now: software and high-end services (drafted, not built)
+## Superseded: software and high-end services (became the outbound path)
+Built on 2026-10-13 as `content/outbound.ts`, for any founder who relies on referrals, not only software. The notes below are the original draft; the open questions still apply to the outbound wording.
+
+### Original draft
 Thais chose to skip this path on 2026-10-13 (second session) and build the agency path first. Not finalised. Same data shape as `content/airbnb-br.ts`, in English. Waiting on Thais's answers (below) before building.
 
 **Context (not scored):** role (owner/founder/leader or operator; switches on the money wording), what they sell (software, high-end services, both), who does outbound today (founder, SDRs, agency, nobody), size of the sales team.

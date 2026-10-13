@@ -12,12 +12,12 @@ Open source, static Next.js 16 + TypeScript app. A person picks their profile, a
 - No Attio, review flow or email in this repo. That private layer lives outside it and comes later.
 - No made-up claims: no statistics or benchmarks in any text. The calculator is plain arithmetic on the person's own numbers.
 - Questions, scoring and advice are Thais's content. Everything new is DRAFT until she approves it. Never put real client data in examples (the Airbnb case is anonymised: pattern only).
-- Four paths: US property management (imobiliária), Airbnb manager in Brazil, software and high-end services, founder-led marketing agencies. Only the Airbnb path is in Portuguese for now; the rest are English.
+- Paths: Airbnb manager in Brazil (built), founder-led marketing agencies (draft), outbound for founders who rely on referrals (draft, replaces the old software path), US property management (not built). Only the Airbnb path is in Portuguese for now; the rest are English.
 - The repo is public (`thaixflou/followthebunney`): nothing sensitive goes in any file, including `handoff.md` and `backlog.md`. Do not publish the site or post anywhere without Thais's approval.
 - The Airbnb path is built and reviewed by Thais. Other paths follow the same data shape (`lib/types.ts`, `content/airbnb-br.ts`); the engine in `lib/engine.ts` holds no wording. Add a path to `lib/paths.ts` and flip `ready` in `PROFILES`.
 - Owner-only money wording: the `money` line of each area shows only to owners; operators see time lost and risk of error.
 - The agency path (`content/agency.ts`, English) is a DRAFT built from a real, anonymised engagement. It adds two optional parts to `AuditPath` in `lib/types.ts`: a live `calculator` (arithmetic in `lib/funnel.ts`, tested) and a downloadable markdown `kit` (`content/agency-kit.ts`). Its download template is a 90-day plan CSV of testable hypotheses (expected result, check date, stop criterion). Other paths can reuse both.
-- Ideas not yet approved for build live in `backlog.md` (WhatsApp chat-export import, software path, design pass).
+- The outbound path (`content/outbound.ts`, `content/outbound-kit.ts`) is a DRAFT that reuses the agency calculator, kit and CSV shape; its ICP questions come from Glow Up v1. Ideas not yet approved for build live in `backlog.md` (WhatsApp chat-export import, design pass).
 - Real client documents (proposals, data) never go in this folder or any repo folder. They live in `C:\Users\Thais\.secrets\clients\`. Never name a real client, person or price in any file here.
 - Ask before deleting, overwriting, renaming or moving any file.
 

@@ -56,3 +56,11 @@
 
 ## 2026-10-13: Design pass postponed
 - Why: Thais wants to work on design later; current styling is a placeholder.
+
+## 2026-10-13: The outbound path replaces the "software" profile and serves any referral-led founder
+- Why: the landing page's lead pain is "I can't reach new clients on purpose", which no audit covered; the skipped software draft was already an outbound audit; the ICP is a situation, not an industry.
+- What we didn't pick: keeping a software-only path (would split the same pain by industry); extending the agency path (it is about inbound leads, not outbound).
+
+## 2026-10-13: Reuse Glow Up v1's ICP questions in new wording; keep v1 untouched
+- Why: v1 covers only the ICP part of outbound (evidence, disqualifiers, buyer), which fits the first two areas; the rest (scoring, lists, message, ownership, numbers) is new.
+- What we didn't pick: embedding v1 as a module (it is private and needs a server, Attio and an AI; v2 is public and static); copying v1's B2C questions.
