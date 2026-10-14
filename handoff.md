@@ -14,6 +14,10 @@ Public repo https://github.com/thaixflou/followthebunney (MIT). The app is one b
 3. Hosting (Vercel Hobby is non-commercial; Pro, or another static host such as Cloudflare Pages or Netlify, after checking terms), then point the landing page's `CONFIG.TOOLS_BASE` at it. Add a title, description and image so a LinkedIn link previews well, and test-book the Calendly link.
 4. Parked until the first sprint sells: email gate, portal, CRM upload, other profiles.
 
+## Update 2026-10-14 (end of session)
+- Thais upgraded to Vercel Pro, so hosting is Vercel. Not linked or deployed yet (no `.vercel` folder; CLI is installed). Preferred route: connect the GitHub repo in the Vercel dashboard so pushes to `main` deploy. Needs her go-ahead before anything goes live.
+- Thais read the Portuguese: a lot needs fixing. She had no time to go through it. Next session: ask her for the corrections (or go through `content/offer.ts` line by line with her), fix them, and only then deploy.
+
 ## Waiting on
 - Thais: copy check on the later lines, calculator currency, hosting choice. Nothing is published or posted without her approval.
 

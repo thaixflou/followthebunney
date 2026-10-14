@@ -4,6 +4,9 @@ import { useState } from "react";
 import { BOOKING_URL, COPY, type Lang } from "@/content/offer.ts";
 import { referralGap, SPRINT_PRICE } from "@/lib/referral.ts";
 
+// Portuguese copy still needs Thais's corrections; hide the switch until then.
+const SHOW_LANG_SWITCH = false;
+
 export default function Offer() {
   const [lang, setLang] = useState<Lang>("en");
   const [clientValue, setClientValue] = useState("");
@@ -32,9 +35,11 @@ export default function Offer() {
     <main className="shell" lang={t.lang}>
       <div className="row" style={{ justifyContent: "space-between", marginTop: 0 }}>
         <p className="privacy" style={{ margin: 0 }}>{t.eyebrow}</p>
-        <button className="link" onClick={() => setLang(lang === "en" ? "pt" : "en")} lang={lang === "en" ? "pt-BR" : "en"}>
-          {t.switchTo}
-        </button>
+        {SHOW_LANG_SWITCH && (
+          <button className="link" onClick={() => setLang(lang === "en" ? "pt" : "en")} lang={lang === "en" ? "pt-BR" : "en"}>
+            {t.switchTo}
+          </button>
+        )}
       </div>
 
       <h1>{t.title}</h1>
