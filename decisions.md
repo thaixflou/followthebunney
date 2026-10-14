@@ -64,3 +64,20 @@
 ## 2026-10-13: Reuse Glow Up v1's ICP questions in new wording; keep v1 untouched
 - Why: v1 covers only the ICP part of outbound (evidence, disqualifiers, buyer), which fits the first two areas; the rest (scoring, lists, message, ownership, numbers) is new.
 - What we didn't pick: embedding v1 as a module (it is private and needs a server, Attio and an AI; v2 is public and static); copying v1's B2C questions.
+
+## 2026-10-14: Quiz lengths of 1, 5 and 15 minutes; 15 is the full set
+- Why: Thais wants a quick, high-impact, easy questionnaire and a visitor who picks how much time they have. 5 minutes is one question per area; 1 minute is the three most telling. The question picks are a draft for her approval.
+- What we didn't pick: cutting outbound to 6 questions only (loses the deep version); a separate quiz per length (three sets of content to keep in sync).
+
+## 2026-10-14: The app uses the landing page's retro look, not the clay look of design.md
+- Why: the landing page project rules retire the clay look; the agreed shell is dotted background, one window, orange button with a hard shadow, yellow highlight.
+- What we didn't pick: the clay palette and DM Sans/Fraunces (restyled once by mistake, then reverted).
+
+## 2026-10-14: Lead to portal flow, with 7-day access for leads
+- Why: Thais's flow is pain card, then book a call or take the quiz, then a quick win, then name and email for the full report (quarter and 2-3 years), then a portal that reads like a health score (quick wins, long-term plan, what Thais is building, current focus, key metrics). Everyone who leaves an email has access for 7 days, then it is deleted unless they become an active client; clients keep a login with their email and a password. Metrics are typed in by hand. For now the landing page only shows a preview.
+- What we didn't pick: a portal for clients only (empty for new leads); keeping lead data longer; syncing metrics from a CRM (later).
+- Build order: landing and quiz (done), then email gate and a private backend (magic link login suggested), then the dashboard. Backend and data stay out of this public repo.
+
+## 2026-10-14: Landing page links to audits by path, with a local fallback
+- Why: each audit has its own static page (/outbound, /agency, /airbnb-br); the landing page uses CONFIG.TOOLS_BASE, and while opened from file or localhost it points to port 3002 so Thais can test the flow.
+- What we didn't pick: query parameters (not available in a static export); one URL with a hash.

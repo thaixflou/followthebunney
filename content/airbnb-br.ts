@@ -37,6 +37,8 @@ export const airbnbBr: AuditPath = {
     restart: "Refazer o diagnóstico",
     privacy: "Nada do que você responde é enviado ou guardado. O diagnóstico roda inteiro no seu navegador.",
     dontKnow: "Ainda não sei",
+    timeTitle: "Quanto tempo você tem?",
+    minutes: (n) => (n === 1 ? "1 minuto" : `${n} minutos`),
   },
 
   context: [
@@ -189,6 +191,12 @@ export const airbnbBr: AuditPath = {
       ["EXEMPLO 101", "Prédio Exemplo A", "Apto 101 Exemplo", "Grupo de WhatsApp", "Portaria Exemplo A", "Foto do documento + datas", "Na véspera do check-in", "Apague esta linha"],
       ["EXEMPLO 202", "Prédio Exemplo B", "Apto 202 Exemplo", "E-mail", "administradora@exemplo.com", "Nomes por escrito + datas", "Na véspera do check-in", "Apague esta linha"],
     ],
+  },
+
+  // RASCUNHO: quais perguntas cada duração faz. 5 minutos = uma por área; 1 minuto = as três mais reveladoras.
+  lengths: {
+    1: ["tempo_resposta", "coleta_docs", "visao_diaria"],
+    5: ["tempo_resposta", "coleta_docs", "mapa_registro", "envio_predios", "troca_apto", "visao_diaria"],
   },
 
   questions: [

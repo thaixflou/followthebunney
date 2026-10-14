@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { PATHS } from "../lib/paths.ts";
 import { toCsv } from "../lib/csv.ts";
 import { funnel } from "../lib/funnel.ts";
-import { allAnswered, horizons, scoreAnswers, type Answers } from "../lib/engine.ts";
+import { allAnswered, forMinutes, horizons, scoreAnswers, type Answers } from "../lib/engine.ts";
 
 for (const path of PATHS) {
   const ids = new Set(path.areas.map((a) => a.id));
@@ -26,6 +26,16 @@ for (const path of PATHS) {
   assert.equal(scoreAnswers(path, unknown).overall, 0);
   assert(scoreAnswers(path, worst).overall > scoreAnswers(path, unknown).overall, '"dont_know" must score below any real answer');
   assert.deepEqual(scoreAnswers(path, worst), scoreAnswers(path, worst), "same answers, same result");
+
+  for (const n of [1, 5]) {
+    const ids = path.lengths?.[n as 1 | 5] ?? [];
+    assert(ids.length > 0 && ids.every((id) => path.questions.some((q) => q.id === id)), `${path.id}: ${n} min list has unknown ids`);
+    const short = forMinutes(path, n);
+    assert(short.questions.length === ids.length && short.areas.every((a) => short.questions.some((q) => q.area === a.id)));
+    const shortBest: Answers = Object.fromEntries(short.questions.map((q) => [q.id, q.options[0].value]));
+    assert.equal(scoreAnswers(short, shortBest).overall, 100);
+  }
+  assert.equal(forMinutes(path, 15), path);
 
   const h = horizons(scoreAnswers(path, unknown));
   assert.equal(h.today.length, 3);

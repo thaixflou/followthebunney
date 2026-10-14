@@ -54,6 +54,8 @@ export type PathText = {
   restart: string;
   privacy: string;
   dontKnow: string;
+  timeTitle: string; // asked on the intro screen when the path has shorter versions
+  minutes: (n: number) => string;
 };
 
 export type Template = {
@@ -96,6 +98,8 @@ export type AuditPath = {
   context: ContextQuestion[];
   areas: Area[];
   questions: Question[];
+  // Question ids asked in the shorter versions. The 15 minute version asks every question.
+  lengths?: { 1: string[]; 5: string[] };
   template: Template;
   kit?: Kit;
   calculator?: Calculator;

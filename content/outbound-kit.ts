@@ -3,7 +3,7 @@
 
 export const outboundKit = `# Outbound starter kit
 
-For founders whose clients come mostly from referrals and inbound, and who want to reach new clients on purpose.
+For founders whose clients come mostly from referrals and inbound, and who want to reach new clients.
 Everything here is a starting point to test on your own market. Change it, and keep what moves your numbers.
 
 ---

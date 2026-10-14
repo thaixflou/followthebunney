@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { PATHS, PROFILES } from "@/lib/paths";
-import { allAnswered, band, dontKnow, horizons, scoreAnswers, type Answers } from "@/lib/engine";
+import { allAnswered, band, dontKnow, forMinutes, horizons, scoreAnswers, type Answers } from "@/lib/engine";
 import { toCsv } from "@/lib/csv";
 import { funnel, PERIODS_PER_YEAR } from "@/lib/funnel";
 import type { AuditPath, Calculator as CalculatorText, Kit } from "@/lib/types";
@@ -88,7 +88,9 @@ function FunnelCalculator({ calc }: { calc: CalculatorText }) {
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://revenuebythais.com";
 
 // Step: -1 = intro, 0 = context, 1..n = one area per screen, n+1 = result.
-function PathAudit({ path, onExit }: { path: AuditPath; onExit: () => void }) {
+function PathAudit({ path: fullPath, onExit }: { path: AuditPath; onExit: () => void }) {
+  const [minutes, setMinutes] = useState(15);
+  const path = useMemo(() => forMinutes(fullPath, minutes), [fullPath, minutes]);
   const t = path.text;
   const [step, setStep] = useState(-1);
   const [context, setContext] = useState<Record<string, string>>({});
@@ -112,16 +114,33 @@ function PathAudit({ path, onExit }: { path: AuditPath; onExit: () => void }) {
     <main className="shell" lang={t.lang}>
       <p className="privacy">{t.privacy}</p>
 
-      {step >= 0 && !done && <p className="progress">{t.step(step + 1, total)}</p>}
+      {step >= 0 && !done && (
+        <>
+          <p className="progress">{t.step(step + 1, total)}</p>
+          <div className="meter" aria-hidden="true"><div style={{ width: `${((step + 1) / total) * 100}%` }} /></div>
+        </>
+      )}
 
       {step === -1 && (
         <section className="card">
           <h1>{t.title}</h1>
           <p>{t.intro}</p>
-          <div className="row">
-            <button className="link" onClick={onExit}>{t.back}</button>
-            <button className="btn" onClick={() => setStep(0)}>{t.start}</button>
-          </div>
+          {fullPath.lengths ? (
+            <>
+              <h2>{t.timeTitle}</h2>
+              <div className="row" style={{ justifyContent: "flex-start", flexWrap: "wrap" }}>
+                {[1, 5, 15].map((n) => (
+                  <button key={n} className="btn" onClick={() => { setMinutes(n); setStep(0); }}>{t.minutes(n)}</button>
+                ))}
+              </div>
+              <div className="row"><button className="link" onClick={onExit}>{t.back}</button></div>
+            </>
+          ) : (
+            <div className="row">
+              <button className="link" onClick={onExit}>{t.back}</button>
+              <button className="btn" onClick={() => setStep(0)}>{t.start}</button>
+            </div>
+          )}
         </section>
       )}
 
@@ -155,7 +174,16 @@ function PathAudit({ path, onExit }: { path: AuditPath; onExit: () => void }) {
               <legend>{q.text}</legend>
               {[...q.options, dontKnow(t.dontKnow)].map((o) => (
                 <label key={o.value} className="check">
-                  <input type="radio" name={q.id} checked={answers[q.id] === o.value} onChange={() => setAnswers((a) => ({ ...a, [q.id]: o.value }))} />
+                  <input
+                    type="radio"
+                    name={q.id}
+                    checked={answers[q.id] === o.value}
+                    onChange={() => {
+                      setAnswers((a) => ({ ...a, [q.id]: o.value }));
+                      // One question on the screen: moving on after the choice saves a click. Back keeps the answer.
+                      if (areaQuestions.length === 1) setStep(step + 1);
+                    }}
+                  />
                   {o.label}
                 </label>
               ))}
@@ -239,8 +267,8 @@ function PathAudit({ path, onExit }: { path: AuditPath; onExit: () => void }) {
   );
 }
 
-export default function Audit() {
-  const [pathId, setPathId] = useState("");
+export default function Audit({ initialPath = "" }: { initialPath?: string }) {
+  const [pathId, setPathId] = useState(initialPath);
   const path = PATHS.find((p) => p.id === pathId);
   if (path) return <PathAudit path={path} onExit={() => setPathId("")} />;
 

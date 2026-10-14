@@ -40,6 +40,8 @@ export const agency: AuditPath = {
     restart: "Start over",
     privacy: "Nothing you answer is sent or stored. The whole audit runs in your browser.",
     dontKnow: "I don't know yet",
+    timeTitle: "How much time do you have?",
+    minutes: (n) => (n === 1 ? "1 minute" : `${n} minutes`),
   },
 
   context: [
@@ -124,7 +126,7 @@ export const agency: AuditPath = {
         quarter:
           "Write a short outline for the first conversation: your reason for contacting, two questions about their situation, a check on who decides, and one agreed next step with a date. Agree who has these conversations.",
         longTerm:
-          "A first contact that builds trust on purpose, so leads that arrive without a referral are treated as a process and not as an awkward favour you have to ask.",
+          "A first contact that builds trust, so leads that arrive without a referral are treated as a process and not as an awkward favour you have to ask.",
         money:
           "If trust only arrives with referrals, your growth is capped by how many referrals you receive. Marketing leads need a process that builds what the referral brings for free.",
       },
@@ -227,6 +229,12 @@ export const agency: AuditPath = {
       ["EXAMPLE: a follow-up cadence on last quarter's leads produces first conversations", "Build the cadence and start with 20 leads", "Example owner", "First conversations held", "Example target", "Example date", "Example: fewer than the target by the date means we review it", "", "Delete this row"],
       ["EXAMPLE: requiring decision access before a proposal reduces proposals that go unanswered", "Add the gate to the checklist", "Example owner", "Proposals answered", "Example target", "Example date", "Example: no change by the date means we review it", "", "Delete this row"],
     ],
+  },
+
+  // DRAFT: which questions each length asks. 5 minutes = one per area; 1 minute = the three most telling.
+  lengths: {
+    1: ["first_touch_time", "no_reply_lead", "founder_away"],
+    5: ["lead_places", "criteria", "first_touch_time", "no_reply_lead", "proposal_death", "founder_away"],
   },
 
   questions: [

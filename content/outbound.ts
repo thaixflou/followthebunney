@@ -14,7 +14,7 @@ export const outbound: AuditPath = {
     lang: "en",
     title: "Where your outbound is missing or leaking",
     intro:
-      "Answer 12 quick questions about how you reach new clients on purpose, not through a referral. You get a result showing which part of an outbound engine is weakest, a calculator that puts it in your own numbers, and a starter kit to build the first version this month.",
+      "Answer a few quick questions about how you reach new clients without a referral. You get a result showing which part of an outbound engine is weakest, a calculator that puts it in your own numbers, and a starter kit to build the first version this month.",
     start: "Start",
     next: "Continue",
     back: "Back",
@@ -32,7 +32,7 @@ export const outbound: AuditPath = {
     quarterTitle: "This quarter",
     quarterIntro: "What to build and how to implement it.",
     longTitle: "Next 2 to 3 years",
-    longIntro: "The structural view of how you reach new clients on purpose.",
+    longIntro: "The structural view of how you reach new clients.",
     moneyLabel: "If you own the business",
     allGood: "Every area is well structured. There is no clear weak point to work on right now.",
     ctaTitle: "Want to talk it through?",
@@ -42,6 +42,8 @@ export const outbound: AuditPath = {
     restart: "Start over",
     privacy: "Nothing you answer is sent or stored. The whole audit runs in your browser.",
     dontKnow: "I don't know yet",
+    timeTitle: "How much time do you have?",
+    minutes: (n) => (n === 1 ? "1 minute" : `${n} minutes`),
   },
 
   context: [
@@ -51,36 +53,6 @@ export const outbound: AuditPath = {
       options: [
         { value: "owner", label: "I am the founder, CEO or an owner" },
         { value: "operator", label: "I run sales, marketing or operations" },
-      ],
-    },
-    {
-      id: "sells",
-      text: "What do you sell?",
-      options: [
-        { value: "services", label: "Services (agency, consulting, high-end or specialist work)" },
-        { value: "software", label: "Software" },
-        { value: "property", label: "Property or rental management" },
-        { value: "other", label: "Something else" },
-      ],
-    },
-    {
-      id: "source",
-      text: "Where do most of your clients come from today?",
-      options: [
-        { value: "referral", label: "Referrals and word of mouth" },
-        { value: "inbound", label: "Inbound (content, website, ads, events)" },
-        { value: "outbound", label: "Outbound" },
-        { value: "mixed", label: "A mix, no clear main source" },
-      ],
-    },
-    {
-      id: "doer",
-      text: "Who reaches out to new prospects today?",
-      options: [
-        { value: "nobody", label: "Nobody, we have not done outbound" },
-        { value: "founder", label: "Mostly the founder, when there is time" },
-        { value: "rep", label: "A sales person or an SDR" },
-        { value: "outside", label: "An agency or a freelancer" },
       ],
     },
   ],
@@ -219,6 +191,12 @@ export const outbound: AuditPath = {
       ["EXAMPLE: contacting 50 accounts that match the ICP with a signal-based message produces first replies", "Build the list and send the first batch", "Example owner", "Replies", "Example target", "Example date", "Example: fewer replies than the target by the date means we rewrite the message", "", "Delete this row"],
       ["EXAMPLE: a weekly two-hour outreach slot keeps the sequence running", "Block the slot and assign an owner", "Example owner", "Accounts contacted per week", "Example target", "Example date", "Example: slot missed twice means we move it or change the owner", "", "Delete this row"],
     ],
+  },
+
+  // DRAFT: which questions each length asks. 5 minutes = one per area; 1 minute = the three most telling.
+  lengths: {
+    1: ["icp_source", "reason", "owner"],
+    5: ["icp_source", "ranking", "list", "reason", "owner", "numbers"],
   },
 
   questions: [

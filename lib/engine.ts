@@ -63,6 +63,15 @@ export function horizons(result: Result): Horizons {
   };
 }
 
+// The path as asked in a shorter version: only the chosen questions, and only the areas they cover.
+export function forMinutes(path: AuditPath, minutes: number): AuditPath {
+  const ids = minutes === 1 ? path.lengths?.[1] : minutes === 5 ? path.lengths?.[5] : undefined;
+  if (!ids) return path;
+  const questions = path.questions.filter((q) => ids.includes(q.id));
+  const areas = path.areas.filter((a) => questions.some((q) => q.area === a.id));
+  return { ...path, questions, areas };
+}
+
 export function allAnswered(path: AuditPath, answers: Answers): boolean {
   return path.questions.every((q) => answers[q.id]);
 }

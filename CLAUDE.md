@@ -21,6 +21,11 @@ Open source, static Next.js 16 + TypeScript app. A person picks their profile, a
 - Real client documents (proposals, data) never go in this folder or any repo folder. They live in `C:\Users\Thais\.secrets\clients\`. Never name a real client, person or price in any file here.
 - Ask before deleting, overwriting, renaming or moving any file.
 
+- Look of the app: same retro shell as the landing page (`../revenue by thais/landing.html`): dotted background, one paper window with a yellow title bar, orange button with hard shadow, yellow highlight, Space Grotesk / Geist / VT323. NOT the clay look in `../revenue by thais/design.md` (retired). Tokens are in `app/globals.css`.
+- Lengths: a path can have `lengths` (question ids for 1 and 5 minutes; 15 = every question), drafted by Claude and not yet approved by Thais. `forMinutes` in `lib/engine.ts` filters the questions and areas. Screens with one question move on when an answer is picked.
+- Each built path has its own static page (`/outbound`, `/agency`, `/airbnb-br`, `app/[path]/page.tsx`) so the landing page can link to it.
+- Planned, not built (needs a server, private repo, consent): name and email gate for the full report, then a portal. Leads keep access 7 days, then it is deleted; active clients get a permanent login (email and password). The portal reads like a health score: quick wins, quarter and 2-3 year plan, what Thais is building, current focus, key metrics (typed in by hand for now). Only a mock preview exists, on the landing page. Never put client data or the backend in this public repo.
+
 ## Commands
 - Run: `npm.cmd run dev` (script execution is disabled in PowerShell); Thais's other dev server may use 3000, so use `npx next dev -p 3002`. Check: `npm run build`, `npm run lint`, `node --experimental-strip-types scripts/test-engine.ts`.
 
@@ -31,3 +36,4 @@ Open source, static Next.js 16 + TypeScript app. A person picks their profile, a
 - Never write code files through a shell heredoc or `node -` script when the text contains backslash escapes (newline, BOM): they become real characters and break the file. Use the Write tool.
 - Library imports use the `.ts` extension (`allowImportingTsExtensions`) so the test script runs under plain Node.
 - `create-next-app` refuses folder names with a space: write the files by hand, as done here.
+- Restyled the app to `design.md` (clay) when Thais said "off the design we agreed". That look is retired. Rule: before styling anything, read the Design line in `../revenue by thais/CLAUDE.md` and match `landing.html`.
