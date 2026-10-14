@@ -10,7 +10,7 @@ Public repo https://github.com/thaixflou/followthebunney (MIT). The calculator p
 
 ## Next session does
 1. Confirm Thais switched off Deployment Protection on both Vercel projects; open both URLs in a private window; test the Calendly button and the landing page's "That's me" link.
-2. GitHub: the calculator commit (hides the switch) is local only, because remote main has an unseen commit `a828997`. Look at it, rebase, push (never force). The landing page changes in `hello-workspace` also need pushing. Thais runs git/vercel commands with `!` (Claude is blocked).
+2. GitHub is up to date for both repos (calculator and `hello-workspace`). Note: the first push reported an error but had worked (`a828997` was our own commit). Thais runs `vercel` commands with `!` (Claude is blocked from deploying).
 3. Portuguese: get Thais's corrections (or go line by line through `content/offer.ts`), fix, then set `SHOW_LANG_SWITCH = true` and redeploy.
 4. Title, description and share image for LinkedIn previews; permanent domain; calculator currency for Brazilian founders (US dollars now).
 5. Parked until the first sprint sells: email gate, portal, CRM upload, other profiles.
