@@ -2,32 +2,26 @@
 
 At the start of every session, read `handoff.md` first. Decisions and why are in `decisions.md`; session logs in `sessions/`. The brief is `../glow up/brief-icp-audit-v2.md`.
 
-Open source, static Next.js 16 + TypeScript app. A person picks their profile, answers a few questions on where revenue leaks in their commercial flow, and gets a result in 3 horizons: Today (DIY), This quarter, 2-3 years. The last two carry the call-to-action. The ICP audit (`../glow up/`) stays untouched as a historical archive; it may become a module here later.
+Open source, static Next.js 16 + TypeScript, one page (English and Portuguese, switch button). For founders and owners whose business works but relies on referrals. A calculator on the person’s own numbers (clients won, how many from referrals, clients wanted, client value) shows what the gap is worth and how little of one client the $2,000 flat, 4-week sprint costs; below it the sprint deliverables and a booking button. The old audit (profiles, questions, scoring, three horizons) and its Airbnb, agency and outbound paths were removed on 2026-10-14; they live in git history (commit e7b67da). The ICP audit in `../glow up/` stays untouched as an archive.
 
 @AGENTS.md
 
 ## Rules
 - Next.js 16 differs from older versions. Read the relevant guide in `../glow up/node_modules/next/dist/docs/` (or this folder's `node_modules/next/dist/docs/`) before writing Next code.
-- Public by design: no API keys, no AI, no server, no stored data. Scoring runs in the browser from fixed rules. Same answers, same score.
+- Public by design: no API keys, no AI, no server, no stored data. The calculator runs in the browser from fixed rules. Same numbers, same result.
 - No Attio, review flow or email in this repo. That private layer lives outside it and comes later.
 - No made-up claims: no statistics or benchmarks in any text. The calculator is plain arithmetic on the person's own numbers.
-- Questions, scoring and advice are Thais's content. Everything new is DRAFT until she approves it. Never put real client data in examples (the Airbnb case is anonymised: pattern only).
-- Paths: Airbnb manager in Brazil (built), founder-led marketing agencies (draft), outbound for founders who rely on referrals (draft, replaces the old software path), US property management (not built). Only the Airbnb path is in Portuguese for now; the rest are English.
+- Offer copy and the calculator wording are Thais's content. Everything new is DRAFT until she approves it. Never put real client data in examples (the Airbnb case is anonymised: pattern only).
 - The repo is public (`thaixflou/followthebunney`): nothing sensitive goes in any file, including `handoff.md` and `backlog.md`. Do not publish the site or post anywhere without Thais's approval.
-- The Airbnb path is built and reviewed by Thais. Other paths follow the same data shape (`lib/types.ts`, `content/airbnb-br.ts`); the engine in `lib/engine.ts` holds no wording. Add a path to `lib/paths.ts` and flip `ready` in `PROFILES`.
-- Owner-only money wording: the `money` line of each area shows only to owners; operators see time lost and risk of error.
-- The agency path (`content/agency.ts`, English) is a DRAFT built from a real, anonymised engagement. It adds two optional parts to `AuditPath` in `lib/types.ts`: a live `calculator` (arithmetic in `lib/funnel.ts`, tested) and a downloadable markdown `kit` (`content/agency-kit.ts`). Its download template is a 90-day plan CSV of testable hypotheses (expected result, check date, stop criterion). Other paths can reuse both.
-- The outbound path (`content/outbound.ts`, `content/outbound-kit.ts`) is a DRAFT that reuses the agency calculator, kit and CSV shape; its ICP questions come from Glow Up v1. Ideas not yet approved for build live in `backlog.md` (WhatsApp chat-export import, design pass).
 - Real client documents (proposals, data) never go in this folder or any repo folder. They live in `C:\Users\Thais\.secrets\clients\`. Never name a real client, person or price in any file here.
 - Ask before deleting, overwriting, renaming or moving any file.
 
 - Look of the app: same retro shell as the landing page (`../revenue by thais/landing.html`): dotted background, one paper window with a yellow title bar, orange button with hard shadow, yellow highlight, Space Grotesk / Geist / VT323. NOT the clay look in `../revenue by thais/design.md` (retired). Tokens are in `app/globals.css`.
-- Lengths: a path can have `lengths` (question ids for 1 and 5 minutes; 15 = every question), drafted by Claude and not yet approved by Thais. `forMinutes` in `lib/engine.ts` filters the questions and areas. Screens with one question move on when an answer is picked.
-- Each built path has its own static page (`/outbound`, `/agency`, `/airbnb-br`, `app/[path]/page.tsx`) so the landing page can link to it.
+- Offer page: copy in `content/offer.ts` (DRAFT until Thais approves; the Portuguese is Claude’s translation), arithmetic in `lib/referral.ts` (tested), page in `app/Offer.tsx`. Price is a flat US$2,000, no 50/50 wording. Booking link: Calendly, in `content/offer.ts`.
 - Planned, not built (needs a server, private repo, consent): name and email gate for the full report, then a portal. Leads keep access 7 days, then it is deleted; active clients get a permanent login (email and password). The portal reads like a health score: quick wins, quarter and 2-3 year plan, what Thais is building, current focus, key metrics (typed in by hand for now). Only a mock preview exists, on the landing page. Never put client data or the backend in this public repo.
 
 ## Commands
-- Run: `npm.cmd run dev` (script execution is disabled in PowerShell); Thais's other dev server may use 3000, so use `npx next dev -p 3002`. Check: `npm run build`, `npm run lint`, `node --experimental-strip-types scripts/test-engine.ts`.
+- Run: `npm.cmd run dev` (script execution is disabled in PowerShell); Thais's other dev server may use 3000, so use `npx next dev -p 3002`. Check: `npm run build`, `npm run lint`, `node --experimental-strip-types scripts/test-referral.ts`.
 
 ## Mistakes to avoid
 - A real client proposal was left inside a repo folder (this one is public). Rule: read client files from `.secrets\clients\`, and if one turns up in a repo folder, ask where to move it before anything else.

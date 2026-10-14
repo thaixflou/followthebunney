@@ -1,5 +1,5 @@
-import Audit from "./Audit";
+import Offer from "./Offer";
 
 export default function Home() {
-  return <Audit />;
+  return <Offer />;
 }

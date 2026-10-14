@@ -81,3 +81,20 @@
 ## 2026-10-14: Landing page links to audits by path, with a local fallback
 - Why: each audit has its own static page (/outbound, /agency, /airbnb-br); the landing page uses CONFIG.TOOLS_BASE, and while opened from file or localhost it points to port 3002 so Thais can test the flow.
 - What we didn't pick: query parameters (not available in a static export); one URL with a hash.
+
+## 2026-10-14: Lean v1 is one offer page, not an audit
+- Why: the ICP (founders whose business works but relies on referrals, with too little volume) buys a result, not an audit. A first sprint that is obviously worth its price sells; clarity on what they get matters more than a scoring tool.
+- What we didn't pick: keeping the three-path audit with lengths, kit and CSV (too much for a first version); keeping only the outbound audit as a qualifier (can come back from git history, commit e7b67da).
+- Removed: Airbnb, agency and outbound paths, the engine, the kits. Supersedes the earlier decisions about path lengths, kits and per-path pages.
+
+## 2026-10-14: The calculator is the hook, plain arithmetic on the person's own numbers
+- Why: it shows what the referral gap is worth and how small the US$2,000 sprint is next to one client, with no benchmarks or promises.
+- What we didn't pick: CRM or sheet upload (later, if ever); benchmark comparisons (no made-up claims).
+
+## 2026-10-14: Sprint is US$2,000 flat, with no 50/50 wording
+- Why: Thais: "a flat rate of 2,000 usd and that is it". Four weeks; day-28 deliverables listed on the page.
+- What we didn't pick: splitting payment on the page.
+
+## 2026-10-14: Page is English and Portuguese with a switch button; booking via Calendly
+- Why: Brazilian founders fit the ICP too. Link: calendly.com/loureiro-tf/new-meeting.
+- What we didn't pick: separate pages per language (more to keep in sync); reais in the calculator (open question; the sprint price is in dollars).

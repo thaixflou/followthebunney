@@ -1,21 +1,20 @@
 # Handoff
 
 ## Where we are
-Public repo https://github.com/thaixflou/followthebunney (MIT). Three paths are built: Airbnb BR (Portuguese, approved) and two English DRAFTS Thais has not reviewed line by line (founder-led agency, outbound). Each now has a 1, 5 or 15 minute version (question sets are a draft), its own page (`/outbound`, `/agency`, `/airbnb-br`), a live calculator, a markdown kit and a 90-day plan CSV. The app wears the landing page's retro look. The landing page (`../revenue by thais`) links to the audits and shows a mock of the planned portal. Build, lint, tsc and the engine test pass.
+Public repo https://github.com/thaixflou/followthebunney (MIT). The app is now one bilingual (English / Português) page: a calculator on the person's own numbers (what the referral gap is worth, and the US$2,000 sprint as a share of one client), the five day-28 deliverables of the 4-week sprint, and a Calendly booking button. The old audit, its three paths and the engine were removed (still in git, commit e7b67da). Build, lint, tsc and `scripts/test-referral.ts` pass. The copy is DRAFT; the Portuguese is Claude's translation.
 
 ## Last session did
-- 2026-10-14: removed "on purpose" everywhere; added quiz lengths and a time choice; restyled to the retro look (after one wrong turn to the retired clay look); per-path pages; landing page links, portal preview, wider window, side toggles, new opener. See `sessions/2026-10-14.md`.
-- 2026-10-13: three sessions: Airbnb path, agency path, outbound path.
+- 2026-10-14 (second session): agreed the lean shape, built the offer page, removed the audit, updated README and CLAUDE.md. See `sessions/2026-10-14-lean.md`.
+- 2026-10-14 (first) and 2026-10-13: the audit paths, now removed. See older session logs.
 
 ## Next session does
-1. Review the agency and outbound drafts with Thais in the browser (`npx next dev -p 3002`): wording, scores, advice, kit, CSV, CTA, and the 1 and 5 minute question picks. Outbound: the low scores for "no replies yet" and "nobody does outreach", and whether the first ICP question fits founders with few clients.
-2. Choose how the calculator becomes more automatic: upload a CRM or sheet export counted in the browser (recommended), or fewer boxes.
-3. Decide the result page: keep the three horizons, or show the top weakness, one action and the CTA, with the rest after the email gate.
-4. Hosting (Vercel; Hobby is non-commercial, Pro for commercial use), then set `CONFIG.TOOLS_BASE` in the landing page.
-5. Email gate and portal: write a spec first (systems design interview), backend in a private repo, magic link login, 7-day access for leads. Change the landing page's "no email" wording when it exists.
-6. Phone-width check of the app and the landing page. US property management path (needs the C21 pain points).
+1. Thais reads the page (`npx next dev -p 3002`; a server for this folder may already be running) and edits the copy. Native check of the Portuguese. Decide the calculator currency for Brazil (US dollars now).
+2. Phone-width and browser check of the page.
+3. Fix `../revenue by thais/landing.html`: it still links to `/outbound`, `/agency`, `/airbnb-br` (gone) and shows the portal mock and "no email" wording.
+4. Hosting (Vercel; Hobby is non-commercial, Pro for commercial use), then point the landing page at it.
+5. Parked until the first sprint sells: email gate, portal, CRM upload, other profiles.
 
 ## Waiting on
-- Thais: review of the agency and outbound drafts and the 1/5 minute picks; calculator choice; result page choice; hosting plan; booking link. Nothing is published or posted without her approval.
+- Thais: copy approval, calculator currency, hosting plan. Nothing is published or posted without her approval.
 
 *Last updated: 2026-10-14*

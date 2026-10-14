@@ -7,8 +7,8 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["700"], variab
 const vt323 = VT323({ subsets: ["latin"], weight: ["400"], variable: "--font-vt323", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Glow Up v2",
-  description: "A free audit of where revenue leaks in your commercial flow",
+  title: "Follow the bunny",
+  description: "See what the gap in your referral-only growth is worth, and the 4-week sprint that builds your first outbound motion",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

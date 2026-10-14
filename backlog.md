@@ -1,5 +1,7 @@
 # Backlog
 
+Note 2026-10-14: the audit paths below were removed when the app became one offer page (see `decisions.md`). Their content is in git history, commit e7b67da. Kept as notes only.
+
 ## Design pass (later)
 The look of the app, including the agency calculator's pinned result box, is a placeholder. Thais will direct a proper design pass later.
 
