@@ -20,6 +20,10 @@ Open source, static Next.js 16 + TypeScript, one page (English and Portuguese, s
 - Offer page: copy in `content/offer.ts` (DRAFT until Thais approves; the Portuguese is Claude’s translation), arithmetic in `lib/referral.ts` (tested), page in `app/Offer.tsx`. Price is a flat US$2,000, no 50/50 wording. Booking link: Calendly, in `content/offer.ts`.
 - Planned, not built (needs a server, private repo, consent): name and email gate for the full report, then a portal. Leads keep access 7 days, then it is deleted; active clients get a permanent login (email and password). The portal reads like a health score: quick wins, quarter and 2-3 year plan, what Thais is building, current focus, key metrics (typed in by hand for now). Only a mock preview exists, on the landing page. Never put client data or the backend in this public repo.
 
+## Hosting
+- LIVE since 2026-10-14 at https://followthebunney.vercel.app (Vercel project `followthebunney`, team tflou-inc, Pro plan). Project was linked with `vercel link --yes --project followthebunney` (Vercel rejects the folder name "glow up v2"). Redeploy: `vercel --prod --yes` run by Thais with the `!` prefix, because the auto-mode classifier blocks Claude from running `vercel` and `git push`. `.vercel` and `.env*` are in `.gitignore`.
+- The language switch is hidden by `SHOW_LANG_SWITCH = false` in `app/Offer.tsx` until Thais corrects the Portuguese in `content/offer.ts`.
+
 ## Commands
 - Run: `npm.cmd run dev` (script execution is disabled in PowerShell); Thais's other dev server may use 3000, so use `npx next dev -p 3002`. Check: `npm run build`, `npm run lint`, `node --experimental-strip-types scripts/test-referral.ts`.
 

@@ -102,3 +102,7 @@
 ## 2026-10-14: Calculator shows partial results and its formulas
 - Why: a professional, relevant feel (Thais, after seeing a reference calculator): each result appears as soon as its inputs exist, plus a per-month line and a fold that lists the formulas. Still only the person’s own numbers.
 - What we didn't pick: industry benchmarks or defaults (no made-up claims); an email gate.
+
+## 2026-10-14: Host on Vercel Pro; publish the calculator in English only for now
+- Why: Thais upgraded to Pro (Hobby is non-commercial). Her Portuguese review found a lot to fix and she had no time, so the switch is hidden by a flag and the copy stays in the file.
+- What we didn't pick: waiting to publish until the Portuguese is done; Cloudflare Pages or Netlify.
