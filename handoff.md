@@ -4,6 +4,7 @@
 Public repo https://github.com/thaixflou/followthebunney (MIT). The app is now one bilingual (English / Português) page: a calculator on the person's own numbers (what the referral gap is worth, and the US$2,000 sprint as a share of one client), the five day-28 deliverables of the 4-week sprint, and a Calendly booking button. The old audit, its three paths and the engine were removed (still in git, commit e7b67da). Build, lint, tsc and `scripts/test-referral.ts` pass. The copy is DRAFT; the Portuguese is Claude's translation.
 
 ## Last session did
+- 2026-10-14 (third): calculator now shows results as you type, adds a per-month line and a "How this is calculated" fold (draft copy, EN and PT). Landing page updated to match (see its own handoff). Dev server on 3002 was stopped by the system for low memory; start it again with `npx next dev -p 3002`.
 - 2026-10-14 (second session): agreed the lean shape, built the offer page, removed the audit, updated README and CLAUDE.md. See `sessions/2026-10-14-lean.md`.
 - 2026-10-14 (first) and 2026-10-13: the audit paths, now removed. See older session logs.
 

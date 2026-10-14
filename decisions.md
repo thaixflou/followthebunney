@@ -98,3 +98,7 @@
 ## 2026-10-14: Page is English and Portuguese with a switch button; booking via Calendly
 - Why: Brazilian founders fit the ICP too. Link: calendly.com/loureiro-tf/new-meeting.
 - What we didn't pick: separate pages per language (more to keep in sync); reais in the calculator (open question; the sprint price is in dollars).
+
+## 2026-10-14: Calculator shows partial results and its formulas
+- Why: a professional, relevant feel (Thais, after seeing a reference calculator): each result appears as soon as its inputs exist, plus a per-month line and a fold that lists the formulas. Still only the person’s own numbers.
+- What we didn't pick: industry benchmarks or defaults (no made-up claims); an email gate.

@@ -15,10 +15,11 @@ export default function Offer() {
   const money = (n: number) => new Intl.NumberFormat(t.locale, { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
   const percent = (n: number) => new Intl.NumberFormat(t.locale, { style: "percent", maximumFractionDigits: 0 }).format(n);
 
-  const filled = clientValue !== "" && won !== "" && fromReferrals !== "" && want !== "";
-  const result = filled
-    ? referralGap({ clientValue: Number(clientValue), won: Number(won), fromReferrals: Number(fromReferrals), want: Number(want) })
-    : null;
+  const num = (v: string) => (v === "" ? undefined : Number(v));
+  const result = referralGap({ clientValue: num(clientValue), won: num(won), fromReferrals: num(fromReferrals), want: num(want) });
+  const anyResult =
+    result.error !== null || result.referralShare !== null || result.gap !== null || result.sprintShare !== null;
+  const oneDecimal = (n: number) => new Intl.NumberFormat(t.locale, { maximumFractionDigits: 1 }).format(n);
 
   const boxes: [keyof typeof t.fields, string, (v: string) => void][] = [
     ["clientValue", clientValue, setClientValue],
@@ -46,27 +47,40 @@ export default function Offer() {
           <label key={id} className="field">
             {t.fields[id]}
             <input type="number" inputMode="decimal" min="0" value={value} onChange={(e) => set(e.target.value)} />
+            {id === "clientValue" && <span className="muted small" style={{ fontWeight: 400 }}>{t.valueHint}</span>}
           </label>
         ))}
 
         <div className="calc-result" aria-live="polite">
-          {!result && <p className="muted small">{t.privacy}</p>}
-          {result && !result.ok && result.error === "referrals" && <p className="money">{t.errReferrals}</p>}
-          {result?.ok && (
-            <>
-              {result.referralShare !== null && (
-                <p>{t.referralLine(Number(fromReferrals), Number(won), percent(result.referralShare))}</p>
-              )}
-              {result.gap > 0 ? (
-                <p className="big-line">{t.gapLine(result.gap, money(result.gapValue))}</p>
-              ) : (
-                <p>{t.noGapLine}</p>
-              )}
-              <p>{t.sprintLine(percent(result.sprintShare), result.breakEvenClients, money(SPRINT_PRICE), result.sprintShare <= 1)}</p>
-              <p className="muted small">{t.calcAssumption}</p>
-            </>
+          {!anyResult && <p className="muted small">{t.emptyHint}</p>}
+          {result.error && <p className="money">{t.errReferrals}</p>}
+          {result.referralShare !== null && (
+            <p>{t.referralLine(Number(fromReferrals), Number(won), percent(result.referralShare))}</p>
           )}
+          {result.gap !== null &&
+            (result.gap > 0 ? (
+              <>
+                {result.gapValue !== null && <p className="big-line">{t.gapLine(result.gap, money(result.gapValue))}</p>}
+                {result.gapPerMonth !== null && <p>{t.perMonthLine(result.gapPerMonth, oneDecimal(result.gapPerMonth))}</p>}
+              </>
+            ) : (
+              <p>{t.noGapLine}</p>
+            ))}
+          {result.sprintShare !== null && result.breakEvenClients !== null && (
+            <p>{t.sprintLine(percent(result.sprintShare), result.breakEvenClients, money(SPRINT_PRICE), result.sprintShare <= 1)}</p>
+          )}
+          {anyResult && <p className="muted small">{t.calcAssumption}</p>}
+          <p className="muted small">{t.privacy}</p>
         </div>
+
+        <details className="how">
+          <summary>{t.howTitle}</summary>
+          <ul className="small muted">
+            {t.how.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </details>
       </section>
 
       <section>
